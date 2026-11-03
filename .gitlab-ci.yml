@@ -1,0 +1,125 @@
+# GitLab CI for Codify
+#
+# Builds the `codify` binary on push and creates a GitLab Release with the
+# assets for each tagged version. Users install via:
+#   curl -fsSL https://gitlab.com/aayushpokhrel49/codify/-/raw/main/install.sh | bash
+#
+# Requirements satisfied by the CI image:
+#   - Rust 1.94.0 (pinned in rust-toolchain.toml)
+#   - dotslash (for hermetic protoc under bin/)
+#   - protoc (via dotslash or PATH)
+
+stages:
+  - lint
+  - test
+  - build
+  - release
+
+variables:
+  CARGO_HOME: "${CI_PROJECT_DIR}/.cargo-home"
+  CARGO_NET_RETRY: "10"
+  RUSTUP_HOME: "${CI_PROJECT_DIR}/.rustup-home"
+  # DotSlash cache directory so protoc downloads are reused across jobs.
+  DOTSLASH_HOME: "${CI_PROJECT_DIR}/.dotslash-home"
+
+.default-rust: &default-rust
+  image: rust:1.94-bookworm
+  before_script:
+    - rustup component add rustfmt clippy 2>/dev/null || true
+    - cargo --version
+    - rustc --version
+    - |
+      if ! command -v dotslash >/dev/null 2>&1; then
+        cargo install dotslash --locked
+      fi
+    - dotslash --help >/dev/null
+    - export CARGO_HOME="${CARGO_HOME}"
+    - export RUSTUP_HOME="${RUSTUP_HOME}"
+    - export DOTSLASH_HOME="${DOTSLASH_HOME}"
+
+# ---------------------------------------------------------------
+# Lint
+# ---------------------------------------------------------------
+clippy:
+  stage: lint
+  <<: *default-rust
+  script:
+    - cargo clippy --workspace --all-targets -- -D warnings
+  artifacts:
+    paths:
+      - clippy-results.txt
+    when: always
+    reports:
+      dotenv: clippy.env
+
+# ---------------------------------------------------------------
+# Test
+# ---------------------------------------------------------------
+tests:
+  stage: test
+  <<: *default-rust
+  script:
+    - cargo test --workspace --all-targets
+  artifacts:
+    paths:
+      - target/
+    expire_in: 1 week
+    when: always
+
+# ---------------------------------------------------------------
+# Build (release binary)
+# ---------------------------------------------------------------
+build-release:
+  stage: build
+  <<: *default-rust
+  script:
+    - cargo build -p codify-bin --release
+  artifacts:
+    name: "codify-${CI_COMMIT_SHORT_SHA}-${CI_JOB_ID}"
+    paths:
+      - target/release/codify
+    expire_in: 1 week
+
+# ---------------------------------------------------------------
+# Release (run only on tags)
+# ---------------------------------------------------------------
+release:
+  stage: release
+  <<: *default-rust
+  rules:
+    - if: $CI_COMMIT_TAG
+  needs: ["build-release"]
+  script:
+    - |
+      # Determine asset suffix per OS
+      case "$(uname -s | tr '[:upper:]' '[:lower:]')" in
+        linux*)   OS_SUFFIX="linux"   ; EXT="tar.gz" ;;
+        darwin*)  OS_SUFFIX="darwin"  ; EXT="tar.gz" ;;
+        msys*|mingw*) OS_SUFFIX="windows" ; EXT="zip" ;;
+        *)        echo "unsupported OS for release build"; exit 1 ;;
+      esac
+
+      ASSET_NAME="codify-${CI_COMMIT_TAG}-${OS_SUFFIX}-$(uname -m | tr '[:upper:]' '[:lower:]').${EXT}"
+
+      # Package the binary
+      case "$EXT" in
+        tar.gz)
+          tar -czf "/tmp/${ASSET_NAME}" -C target/release codify
+          ;;
+        zip)
+          zip -j "/tmp/${ASSET_NAME}" target/release/codify.exe 2>/dev/null || zip -j "/tmp/${ASSET_NAME}" target/release/codify
+          ;;
+      esac
+
+      # Upload release asset via GitLab API
+      curl --request POST \
+        --header "PRIVATE-TOKEN: ${GITLAB_TOKEN}" \
+        --form "file=@/tmp/${ASSET_NAME}" \
+        --form "name=\"${ASSET_NAME}\"" \
+        "https://gitlab.com/api/v4/projects/${CI_PROJECT_ID}/releases/${CI_COMMIT_TAG}/assets/links"
+
+      echo "Release asset uploaded: ${ASSET_NAME}"
+  artifacts:
+    paths:
+      - target/release/codify
+    expire_in: 1 week

@@ -34,22 +34,53 @@ runtime. It is synced periodically from the upstream monorepo.
 A small `SOURCE_REV` file at the root records the full monorepo commit SHA
 for the version of the code present in this tree.
 
+---
+
+## Why "Codify" (was "Grok Build" / xAI / SpaceXAI)
+
+This tree is a fork of the original **Grok Build** project, which was built by
+**xAI / SpaceXAI**. You may still see `x.ai`, `xai`, `grok`, and `SpaceXAI`
+references in some strings, URLs, and legacy code — those are remnants of the
+original upstream that we have not yet renamed everywhere.
+
+This fork has been rebranded to **Codify** (`codify` binary). The user-facing
+command is now `codify` instead of `grok`, and new installs should use the
+GitLab release URL above rather than `x.ai/cli`.
+
+If you are looking for the original xAI distribution, see
+https://x.ai/cli — this repository is an independent rebrand and is not
+affiliated with xAI or SpaceXAI.
+
 </div>
 
 ---
 
 ## Installing the released binary
 
-Prebuilt binaries are published for macOS, Linux, and Windows:
+Prebuilt binaries are published via GitLab Releases for macOS, Linux, and
+Windows. Install with one curl command:
 
 ```sh
-curl -fsSL https://x.ai/cli/install.sh | bash   # macOS / Linux / Git Bash
-irm https://x.ai/cli/install.ps1 | iex          # Windows PowerShell
+# macOS / Linux / Git Bash
+curl -fsSL https://gitlab.com/aayushpokhrel49/codify/-/raw/main/install.sh | bash
+
+# Windows PowerShell
+irm https://gitlab.com/aayushpokhrel49/codify/-/raw/main/install.ps1 | iex
+
 codify --version
 ```
 
-See the [changelog](https://x.ai/build/changelog) for the latest fixes,
-features, and improvements in each release.
+Install a specific version:
+
+```sh
+CODIFY_VERSION=v1.0.45 curl -fsSL https://gitlab.com/aayushpokhrel49/codify/-/raw/main/install.sh | bash
+```
+
+The binary artifact is named `codify` and is installed to
+`$HOME/.local/bin` (or `/usr/local/bin` as a fallback).
+
+See the [GitLab Releases page](https://gitlab.com/aayushpokhrel49/codify/-/releases)
+for the latest fixes, features, and improvements in each release.
 
 ## Building from source
 
@@ -80,6 +111,9 @@ cargo check -p codify-bin            # fast validation
 
 The binary artifact is named `codify`.
 
+CI builds run on every push/tag via [`.gitlab-ci.yml`](.gitlab-ci.yml) and
+publish release assets to GitLab Releases.
+
 ## Quick start: use an API key (no login / no browser)
 
 You do **not** need to run `codify login` to use the agent. Pass your API key directly:
@@ -102,13 +136,12 @@ With an API key, model selection is controlled by `--model` (default `grok-4.6`)
 
 ## Documentation
 
-Full online documentation is available at
-[docs.x.ai/build/overview](https://docs.x.ai/build/overview).
-
-The user guide ships with the pager crate:
+Full documentation ships with the pager crate:
 [`crates/codegen/codify-pager/docs/user-guide/`](crates/codegen/codify-pager/docs/user-guide/)
 — getting started, keyboard shortcuts, slash commands, configuration, theming,
 MCP servers, skills, plugins, hooks, headless mode, sandboxing, and more.
+
+Online reference: https://gitlab.com/aayushpokhrel49/codify/-/tree/main/crates/codegen/codify-pager/docs/user-guide
 
 ## Repository layout
 

@@ -11,28 +11,22 @@ You can use it interactively as a full-screen TUI, run it headlessly for scripti
 Install the latest stable release (macOS, Linux, or Windows via Git Bash):
 
 ```bash
-curl -fsSL https://x.ai/cli/install.sh | bash
+curl -fsSL https://gitlab.com/aayushpokhrel49/codify/-/raw/main/install.sh | bash
 ```
 
 Install a specific version:
 
 ```bash
-curl -fsSL https://x.ai/cli/install.sh | bash -s 0.1.42
+CODIFY_VERSION=v1.0.45 curl -fsSL https://gitlab.com/aayushpokhrel49/codify/-/raw/main/install.sh | bash
 ```
 
 On **Windows (PowerShell)**, use the native PowerShell installer:
 
 ```powershell
-irm https://x.ai/cli/install.ps1 | iex
+irm https://gitlab.com/aayushpokhrel49/codify/-/raw/main/install.ps1 | iex
 ```
 
-Install a specific version:
-
-```powershell
-$env:GROK_VERSION="0.1.42"; irm https://x.ai/cli/install.ps1 | iex
-```
-
-The PowerShell installer automatically adds `%USERPROFILE%\.grok\bin` to your User PATH. Alternatively, install via [Git for Windows](https://gitforwindows.org/) (Git Bash) or MSYS2 using the bash script above. WSL users get the Linux binary automatically.
+Alternatively, install via [Git for Windows](https://gitforwindows.org/) (Git Bash) or MSYS2 using the bash script above. WSL users get the Linux binary automatically.
 
 Verify the installation:
 
@@ -45,17 +39,6 @@ Update to the latest version at any time:
 ```bash
 codify update
 ```
-
-If you installed Grok Build with WinGet, update it with WinGet instead. Quit
-Grok first, then run:
-
-```powershell
-winget upgrade --id xAI.GrokBuild -e
-```
-
-On a WinGet install, `grok update` prints this command and changes nothing.
-The WinGet package tracks the stable channel, and new releases can take a few
-days to reach it.
 
 To fetch a repository through Grove (NFS on macOS, FUSE on Linux), enable
 `grok clone` with `[clone] enabled = true` in Grove config, `GROK_CLONE=1`,
