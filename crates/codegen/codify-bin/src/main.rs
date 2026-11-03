@@ -1239,7 +1239,8 @@ async fn run_agent_command(
     // The shell's auth-method resolver reads `XAI_API_KEY` directly from the environment,
     // so mirror the CLI value there before the agent is built.
     if let Some(key) = &agent_args.api_key {
-        std::env::set_var(XAI_API_KEY_ENV_VAR, key);
+        // SAFETY: setting XAI_API_KEY env var for auth-method resolver; single-threaded at startup
+        unsafe { std::env::set_var(XAI_API_KEY_ENV_VAR, key); }
     }
     if matches!(
         agent_args.mode,

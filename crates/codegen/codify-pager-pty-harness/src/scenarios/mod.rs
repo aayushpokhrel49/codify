@@ -62,6 +62,11 @@ impl Scenario {
         Scenario::MixedInteraction,
     ];
 
+    /// Get the scenario name as a string (for tracing).
+    pub fn as_str(&self) -> &'static str {
+        self.as_ref()
+    }
+
     /// Dispatch to the scenario implementation.
     pub async fn run(
         self,
