@@ -257,6 +257,7 @@ pub(crate) struct BuiltProviders {
 /// Re-encode validated DER roots as one multi-block PEM string (tonic's `Certificate::from_pem` parses every block in a single certificate).
 /// `None` when `ders` is empty.
 fn ders_to_pem_bundle(ders: &[Vec<u8>]) -> Option<String> {
+    use base64::Engine as _;
     if ders.is_empty() {
         return None;
     }
