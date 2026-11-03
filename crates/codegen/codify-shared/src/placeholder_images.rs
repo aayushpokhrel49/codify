@@ -476,7 +476,6 @@ pub fn recover_orphan_placeholders_with_prefixes_and_caps(
     per_image_max: usize,
     aggregate_max: usize,
 ) -> usize {
-    use base64::Engine as _;
 
     let placeholders = extract_placeholders(query);
     if placeholders.is_empty() {

@@ -363,7 +363,6 @@ pub fn transmit_kitty_image(image_data: &[u8], format: KittyImageFormat, image_i
 
 /// `first_chunk_header` is the metadata for the first chunk (action, format, etc.).
 fn kitty_chunked_escape(image_data: &[u8], first_chunk_header: &str) -> String {
-    use base64::Engine as _;
     let b64 = base64::engine::general_purpose::STANDARD.encode(image_data);
 
     let chunk_size = 4096;
@@ -427,7 +426,6 @@ pub fn clear_kitty_image(image_id: u32) -> String {
 
 /// `preserveAspectRatio=0`: callers already sized the rect. Re-preserving against real cell geometry letterboxes blank bands.
 pub fn render_iterm2_image(image_data: &[u8], cols: u16, rows: u16) -> String {
-    use base64::Engine as _;
     let b64 = base64::engine::general_purpose::STANDARD.encode(image_data);
     format!(
         "\x1b]1337;File=inline=1;width={cols}cells;height={rows}cells;preserveAspectRatio=0:{b64}\x07",

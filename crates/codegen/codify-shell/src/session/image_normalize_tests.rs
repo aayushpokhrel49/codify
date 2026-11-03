@@ -761,7 +761,6 @@ fn persisted_image_reject_reason_pixel_ceiling() {
 /// The `read_file` inline-attach gate (the below-floor icon enforcement point): floors are enforced, and unvalidatable payloads fail closed.
 #[test]
 fn inline_attach_verdict_gates_floors_and_fails_closed() {
-    use base64::Engine as _;
     let b64 = |bytes: &[u8]| base64::engine::general_purpose::STANDARD.encode(bytes);
     assert_eq!(
         inline_attach_verdict(&b64(&make_test_png(16, 16))),

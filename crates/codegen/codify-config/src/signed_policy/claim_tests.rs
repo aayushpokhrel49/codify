@@ -1,6 +1,5 @@
 //! The server-signed is-managed claim: verifiers, domain separation, and the impose/defer signal that closes the sidecar-removal downgrade.
 
-use base64::Engine as _;
 use super::super::*;
 use super::{keyset, payload, sign, test_keypair};
 

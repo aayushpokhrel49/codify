@@ -1,7 +1,5 @@
 //! Image compression for conversation embedding.
 
-use base64::Engine as _;
-
 /// Why [`compress_image_for_conversation`] could not produce a
 /// model-embeddable image.
 #[derive(Debug, thiserror::Error)]
@@ -71,7 +69,6 @@ pub async fn image_read_output(
     mime_type: String,
 ) -> crate::types::output::ReadFileOutput {
     use crate::types::output::{ImageContent, ReadFileOutput};
-    use base64::Engine as _;
 
     let (encoded_bytes, mime) = match tokio::task::spawn_blocking(move || {
         compress_image_for_conversation(file_bytes, mime_type)

@@ -1,4 +1,3 @@
-use base64::Engine;
 use super::*;
 use crate::capability::CapabilityMode;
 use crate::handle::tests::{
@@ -1562,7 +1561,6 @@ fn directory_entries(path: &std::path::Path) -> Vec<std::path::PathBuf> {
 }
 #[tokio::test]
 async fn dispatch_store_session_image_preserves_binary_in_bound_folder() {
-    use base64::Engine;
     use codify_workspace_types::rpc::fs::{StoreSessionImageReq, StoreSessionImageRes};
     let (handler, folder) = session_image_handler().await;
     let root = handler.workspace.root_cwd().unwrap();
@@ -1673,7 +1671,6 @@ async fn dispatch_store_session_image_rejects_invalid_input_without_writing() {
 }
 #[tokio::test]
 async fn dispatch_store_session_image_enforces_size_limit_without_writing() {
-    use base64::Engine;
     use codify_workspace_types::rpc::fs::{
         MAX_SESSION_IMAGE_BASE64_BYTES, MAX_SESSION_IMAGE_BYTES,
     };
@@ -1702,7 +1699,6 @@ async fn dispatch_store_session_image_enforces_size_limit_without_writing() {
 }
 #[tokio::test]
 async fn dispatch_store_session_image_accepts_exact_size_limit() {
-    use base64::Engine;
     use codify_workspace_types::rpc::fs::{MAX_SESSION_IMAGE_BYTES, StoreSessionImageRes};
     let (handler, folder) = session_image_handler().await;
     let bytes = vec![0xff; MAX_SESSION_IMAGE_BYTES];
@@ -1767,7 +1763,6 @@ async fn dispatch_store_session_image_reports_write_failure() {
 /// Sync `block_on` under the env lock: the dispatch reads `WORKSPACE_CLIENT_FS_QUERIES`, which `write_file_behind_client_fs_gate` sets.
 #[test]
 fn dispatch_client_fs_write_file_round_trips_through_envelope() {
-    use base64::Engine;
     use codify_workspace_types::rpc::fs::{ClientFsWriteFileReq, ClientFsWriteFileRes};
     let _env = crate::LockedTestEnv::lock();
     let _unset = crate::TestEnvGuard::unset("WORKSPACE_CLIENT_FS_QUERIES");

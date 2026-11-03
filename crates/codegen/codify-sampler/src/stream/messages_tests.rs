@@ -279,7 +279,6 @@ async fn multiple_thinking_blocks_emit_per_block_signatures_in_order() {
 /// A base64 signature whose readable header names the block kind.
 /// Real Anthropic Messages API signatures carry "thinking" or "narration" there.
 fn signature_with_kind(kind: &[u8]) -> String {
-    use base64::Engine as _;
     let mut bytes = vec![
         0x08, 0x04, 0x12, 0xf3, 0x06, 0x0a, 0x11, 0x08, 0x11, 0x18, 0x02, 0x38,
     ];

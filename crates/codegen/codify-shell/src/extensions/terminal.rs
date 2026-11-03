@@ -345,8 +345,6 @@ pub async fn handle(agent: &dyn AgentRuntime, args: &acp::ExtRequest) -> ExtResu
 }
 
 pub(crate) async fn handle_pty_input(params: &serde_json::Value) {
-    use base64::Engine as _;
-
     let Ok(input) = serde_json::from_value::<PtyInputNotification>(params.clone()) else {
         tracing::warn!("failed to parse pty input notification");
         return;

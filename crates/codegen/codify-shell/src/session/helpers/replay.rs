@@ -1241,7 +1241,6 @@ mod tests {
     /// The splice must heal it like the jsonl loader does, or a cross-compaction rewind re-poisons a healed session.
     #[test]
     fn test_replay_checkpoint_strips_invalid_images() {
-        use base64::Engine as _;
         let tmp = TempDir::new().unwrap();
 
         // 16×16 icon: below the API's 512-total-pixel floor.

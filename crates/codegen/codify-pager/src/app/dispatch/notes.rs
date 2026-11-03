@@ -589,7 +589,6 @@ pub(super) fn dispatch_send_remember_note_from_command(
 fn encode_feedback_image_slice(
     images: &[crate::prompt_images::PastedImage],
 ) -> (Vec<codify_shell::session::FeedbackImage>, Option<String>) {
-    use base64::Engine as _;
 
     let loaded: Vec<Option<(Vec<u8>, String)>> = images
         .iter()

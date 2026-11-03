@@ -2028,7 +2028,6 @@ pub(crate) fn strip_invalid_images(items: &mut [ConversationItem]) -> usize {
 }
 /// Check that a `data:` URI has a valid `;base64,` header and decodable payload within the size limit.
 fn is_valid_data_uri_image(url: &str) -> bool {
-    use base64::Engine as _;
     let after_data = match url.strip_prefix("data:") {
         Some(s) => s,
         None => return false,

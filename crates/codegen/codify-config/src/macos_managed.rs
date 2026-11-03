@@ -5,8 +5,6 @@
 //! The layer is trusted on every launch, independent of network or cache.
 //! Off macOS the layer is `None`.
 
-use base64::Engine as _;
-
 #[cfg(target_os = "macos")]
 const MANAGED_PREFERENCES_DOMAIN: &str = "ai.x.grok";
 #[cfg(target_os = "macos")]

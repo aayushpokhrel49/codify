@@ -1377,7 +1377,6 @@ fn build_content_blocks_with_prefixes_and_caps_ref(
     aggregate_max: usize,
 ) -> ContentBlocksBuild {
     use agent_client_protocol::{ContentBlock, ImageContent, TextContent};
-    use base64::Engine as _;
 
     // Phase 1: rewrite the text to strip failed-load placeholders and collect successfully-loaded orphan images
     // PastedImage-backed placeholders (display_number present in `images`) are left alone
@@ -1442,7 +1441,6 @@ fn resolve_orphan_placeholders(
     aggregate_max: usize,
 ) -> (String, Vec<agent_client_protocol::ImageContent>) {
     use agent_client_protocol::ImageContent;
-    use base64::Engine as _;
 
     let Some(allowed) = allowed_prefixes else {
         return (text, Vec::new());
@@ -3829,7 +3827,6 @@ mod tests {
 
     #[test]
     fn build_blocks_orphan_placeholder_loaded_from_disk() {
-        use base64::Engine as _;
 
         let dir = tempfile::tempdir().unwrap();
         let path = dir.path().join("orphan.png");
@@ -4079,7 +4076,6 @@ mod tests {
     /// Inclusive boundary: cap == single image size admits the image.
     #[test]
     fn build_blocks_orphan_aggregate_cap_inclusive_boundary() {
-        use base64::Engine as _;
 
         let dir = tempfile::tempdir().unwrap();
         let path = dir.path().join("one.png");

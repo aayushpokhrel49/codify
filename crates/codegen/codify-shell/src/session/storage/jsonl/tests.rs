@@ -1614,7 +1614,6 @@ fn test_jpeg_bytes() -> Vec<u8> {
     buf
 }
 fn image_data_uri(mime: &str, bytes: &[u8]) -> String {
-    use base64::Engine as _;
     format!(
             "data:{mime};base64,{}",
             base64::engine::general_purpose::STANDARD.encode(bytes)
@@ -1689,7 +1688,6 @@ fn strip_invalid_images_http_url_untouched() {
 }
 #[test]
 fn strip_invalid_images_oversized_stripped() {
-    use base64::Engine as _;
     let huge = vec![0u8; MAX_LOADED_IMAGE_BYTES + 1];
     let payload = base64::engine::general_purpose::STANDARD.encode(&huge);
     let url = format!("data:image/jpeg;base64,{payload}");
@@ -1792,7 +1790,6 @@ fn strip_invalid_images_empty_payload_stripped() {
 }
 #[test]
 fn strip_invalid_images_case_insensitive_base64_marker() {
-    use base64::Engine as _;
     let payload = base64::engine::general_purpose::STANDARD.encode(test_png_bytes());
     let url = format!("data:image/png;Base64,{payload}");
     let mut items = vec![ConversationItem::user_with_parts(vec![
@@ -2116,7 +2113,6 @@ fn read_chat_history_skips_torn_line_and_quarantines_original() {
 /// The pre-strip original must therefore be quarantined exactly like a torn-line load, keeping a false drop recoverable.
 #[test]
 fn read_chat_history_quarantines_original_on_image_strip() {
-    use base64::Engine as _;
     use image::{ImageBuffer, Rgba};
     let img: ImageBuffer<Rgba<u8>, Vec<u8>> = ImageBuffer::from_pixel(
         16,

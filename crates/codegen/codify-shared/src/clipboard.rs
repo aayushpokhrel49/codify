@@ -343,7 +343,6 @@ pub fn spool_for_stdin(data: &[u8]) -> anyhow::Result<std::fs::File> {
 /// When `tmux_passthrough` is true, wrap it in the tmux DCS passthrough envelope; that is only correct when tmux is the IMMEDIATE terminal.
 /// Otherwise emit a plain OSC 52.
 fn osc52_sequence(text: &str, tmux_passthrough: bool) -> Vec<u8> {
-    use base64::Engine as _;
     let encoded = base64::engine::general_purpose::STANDARD.encode(text.as_bytes());
     if tmux_passthrough {
         format!("\x1bPtmux;\x1b\x1b]52;c;{encoded}\x07\x1b\\").into_bytes()
