@@ -1896,9 +1896,8 @@ mod tests {
     }
     #[test]
     fn remote_restore_follows_compiled_restore_stack() {
-        assert_eq!(
-            MaterializeCtx::from_pager_args(&parse(&["grok"])).allow_remote_restore,
-            false
+        assert!(
+            !MaterializeCtx::from_pager_args(&parse(&["grok"])).allow_remote_restore
         );
     }
     #[test]

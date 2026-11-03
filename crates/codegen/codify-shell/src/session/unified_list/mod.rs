@@ -976,7 +976,7 @@ mod tests {
         }
         {
             let _on = codify_test_support::EnvGuard::set("GROK_SESSION_LIST_CONVERSATIONS", "1");
-            assert_eq!(conversations_lane_enabled(), false);
+            assert!(!conversations_lane_enabled());
         }
         {
             let _off = codify_test_support::EnvGuard::set("GROK_SESSION_LIST_CONVERSATIONS", "0");
@@ -998,13 +998,12 @@ mod tests {
         {
             let _desktop =
                 codify_test_support::EnvGuard::set("GROK_SESSION_LIST_CONVERSATIONS", "1");
-            assert_eq!(conversations_lane_active(), false);
+            assert!(!conversations_lane_active());
         }
         {
             let _chat = codify_test_support::EnvGuard::set(GROK_CHAT_MODE_ENV, "1");
-            assert_eq!(
-                conversations_lane_active(),
-                false,
+            assert!(
+                !conversations_lane_active(),
                 "process chat mode must enable the lane (chat feature only)"
             );
         }
