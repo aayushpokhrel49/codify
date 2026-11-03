@@ -2,6 +2,7 @@
 //!
 //! Individual test modules import via `use super::common::*`.
 
+use base64::Engine as _;
 pub(crate) use serde_json::json;
 pub(crate) use std::path::{Path, PathBuf};
 pub(crate) use std::time::{Duration, Instant};

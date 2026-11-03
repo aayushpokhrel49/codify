@@ -3,6 +3,7 @@
 //! When rewinding to a prompt before a compaction boundary, the original messages are gone from the in-memory conversation and `chat_history.jsonl`.
 //! This module reconstructs the conversation by streaming `updates.jsonl` and handling `CompactionCheckpoint` / `RewindMarker` entries.
 
+use base64::Engine as _;
 use std::io;
 use std::path::Path;
 

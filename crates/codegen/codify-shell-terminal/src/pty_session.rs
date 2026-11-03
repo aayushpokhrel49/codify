@@ -8,6 +8,7 @@
 // Tests panic freely
 #![cfg_attr(not(test), deny(clippy::unwrap_used, clippy::expect_used))]
 
+use base64::Engine as _;
 use std::collections::{HashMap, VecDeque};
 use std::io::{Read, Write};
 use std::sync::{Arc, LazyLock};

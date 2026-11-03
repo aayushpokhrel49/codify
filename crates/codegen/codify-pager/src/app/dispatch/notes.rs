@@ -1,5 +1,6 @@
 //! Feedback, remember-note, btw, and recap dispatchers.
 
+use base64::Engine as _;
 use super::ctx::{NO_SESSION_NOTICE, with_active_agent};
 use agent_client_protocol as acp;
 

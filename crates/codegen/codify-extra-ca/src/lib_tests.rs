@@ -1,3 +1,4 @@
+use base64::Engine as _;
 use super::*;
 
 // Self-signed PEMs for unit tests only (CN=test-extra-ca-1 / -2).

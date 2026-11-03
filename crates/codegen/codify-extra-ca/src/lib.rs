@@ -5,6 +5,7 @@
 
 #![deny(clippy::indexing_slicing)]
 
+use base64::Engine as _;
 use std::io::Read;
 use std::sync::Arc;
 use std::sync::OnceLock;

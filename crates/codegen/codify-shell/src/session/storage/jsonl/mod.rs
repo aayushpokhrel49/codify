@@ -1,3 +1,4 @@
+use base64::Engine as _;
 use super::{PersistedData, SessionUpdateEnvelope, StorageAdapter};
 use crate::sampling::types::ChatRequestMessage;
 use crate::sampling::{ContentPart, ConversationItem};

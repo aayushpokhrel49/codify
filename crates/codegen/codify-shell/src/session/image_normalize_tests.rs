@@ -1,3 +1,4 @@
+use base64::Engine as _;
 use super::*;
 use image::DynamicImage;
 use image::codecs::jpeg::JpegEncoder;

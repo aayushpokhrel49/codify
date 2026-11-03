@@ -1,4 +1,5 @@
 #![cfg_attr(rustfmt, rustfmt::skip)]
+use base64::Engine as _;
 use super::*;
 use crate::session::info::Info;
 use crate::session::persistence::default_model_id;

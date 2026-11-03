@@ -1,3 +1,4 @@
+use base64::Engine;
 use super::*;
 use crate::capability::CapabilityMode;
 use crate::handle::tests::{

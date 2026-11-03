@@ -27,6 +27,8 @@
 //! [`set_text_osc52`] writes an OSC 52 sequence to stderr (the TUI output stream).
 //! [`is_remote_session`] detects SSH/tmux/screen environments where OSC 52 should be preferred.
 
+use base64::Engine as _;
+
 /// Encoded image data read from the system clipboard.
 ///
 /// `data` is encoded bytes, not raw RGBA pixels, so it can be persisted or base64-encoded directly.

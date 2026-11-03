@@ -1,5 +1,7 @@
 //! Image compression for conversation embedding.
 
+use base64::Engine as _;
+
 /// Why [`compress_image_for_conversation`] could not produce a
 /// model-embeddable image.
 #[derive(Debug, thiserror::Error)]

@@ -27,6 +27,8 @@
 //! The regex requires the literal `": "` separator that the producer always emits; see [`extract_placeholders`].
 //!
 //! ## `file://` URI convention
+
+use base64::Engine as _;
 //!
 //! The TUI's `prompt_images::build_content_blocks_with_workspace` and [`recover_orphan_placeholders`] emit `file://{canonical.display()}` URIs.
 //! Neither side percent-encodes the path.

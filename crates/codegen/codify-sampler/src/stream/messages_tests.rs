@@ -1,6 +1,7 @@
 //! These tests live outside `messages.rs` so the implementation reads top-to-bottom.
 //! `#[path = "messages_tests.rs"] mod tests;` in messages.rs wires them in.
 
+use base64::Engine as _;
 use super::*;
 use futures_util::stream;
 

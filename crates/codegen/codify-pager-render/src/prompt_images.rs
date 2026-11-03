@@ -2,6 +2,7 @@
 //!
 //! Both the view layer ([`crate::views::prompt_widget`]) and the app/dispatch layer ([`crate::app::dispatch`]) use these types, so they live here.
 
+use base64::Engine as _;
 use std::collections::HashSet;
 use std::path::PathBuf;
 use std::sync::{Arc, OnceLock};

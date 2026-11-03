@@ -17,6 +17,7 @@
 //! 3. Write the escape sequence to stderr **after** the ratatui cell flush but inside the synchronized-output block.
 //! 4. Coordinate shared ID-1 ownership through [`super::overlay`].
 
+use base64::Engine as _;
 use std::sync::OnceLock;
 use std::sync::atomic::{AtomicBool, Ordering};
 

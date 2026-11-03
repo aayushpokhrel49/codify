@@ -7,6 +7,7 @@
 //! Those header constants live in `otel_layer` and are not referenced by this module.
 //! No `AuthCredentialProvider` is ever read.
 
+use base64::Engine as _;
 use std::sync::Arc;
 use std::time::Duration;
 

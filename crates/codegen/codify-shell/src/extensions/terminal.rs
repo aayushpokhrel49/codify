@@ -1,3 +1,4 @@
+use base64::Engine as _;
 use crate::extensions::agent_runtime::AgentRuntime;
 use crate::extensions::routing::RequestMeta;
 use crate::session::ExtMethodResult;
