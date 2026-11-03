@@ -109,7 +109,11 @@ enum Surface {
 
 impl Surface {
     fn as_str(&self) -> &'static str {
-        self.as_ref()
+        match self {
+            Surface::Agent => "agent",
+            Surface::DashboardDispatch => "dashboard-dispatch",
+            Surface::All => "all",
+        }
     }
 }
 /// Aggregated latency stats for one (surface, mode) cell.
