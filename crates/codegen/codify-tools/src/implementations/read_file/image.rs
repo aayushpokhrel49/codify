@@ -68,6 +68,7 @@ pub async fn image_read_output(
     file_bytes: Vec<u8>,
     mime_type: String,
 ) -> crate::types::output::ReadFileOutput {
+    use base64::Engine as _;
     use crate::types::output::{ImageContent, ReadFileOutput};
 
     let (encoded_bytes, mime) = match tokio::task::spawn_blocking(move || {
