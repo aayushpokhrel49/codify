@@ -64,7 +64,7 @@ impl Scenario {
 
     /// Get the scenario name as a string (for tracing).
     pub fn as_str(&self) -> &'static str {
-        self.as_ref()
+        (*self).into()
     }
 
     /// Dispatch to the scenario implementation.
