@@ -27,8 +27,6 @@
 //! The regex requires the literal `": "` separator that the producer always emits; see [`extract_placeholders`].
 //!
 //! ## `file://` URI convention
-
-use base64::Engine as _;
 //!
 //! The TUI's `prompt_images::build_content_blocks_with_workspace` and [`recover_orphan_placeholders`] emit `file://{canonical.display()}` URIs.
 //! Neither side percent-encodes the path.
@@ -36,6 +34,7 @@ use base64::Engine as _;
 //! [`canonical_from_file_uri`] parses inbound URIs in both the unencoded and percent-decoded forms, so dedup works against either convention.
 //! Do **not** add percent-encoding on one side without also doing it on the other; the asymmetry breaks dedup.
 
+use base64::Engine as _;
 use std::path::{Path, PathBuf};
 use std::sync::LazyLock;
 
