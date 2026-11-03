@@ -1,0 +1,394 @@
+{
+  "default": "grok-4.6",
+  "web_search": "grok-4.6",
+  "image_description": "grok-4.6",
+  "session_summary": "grok-4.6",
+  "models": [
+    {
+      "id": "grok-4.6",
+      "model": "grok-4.6",
+      "model_family": "xai",
+      "name": "Grok 4.6",
+      "provider": "xAI",
+      "description": "xAI's latest frontier model",
+      "base_url": "https://api.x.ai/v1",
+      "context_window": 500000,
+      "api_backend": "responses",
+      "supports_backend_search": true,
+      "system_prompt_label": "Grok 4.6",
+      "supports_reasoning_effort": true,
+      "reasoning_effort": "high",
+      "auto_compact_threshold_percent": 80,
+      "compaction_at_tokens": true,
+      "compactions_remaining": 1,
+      "reasoning_efforts": [
+        {
+          "value": "xhigh",
+          "label": "Extra High Effort",
+          "description": "Highest effort and reasoning level"
+        },
+        {
+          "value": "high",
+          "label": "High Effort",
+          "description": "Higher implementation quality with extensive reasoning",
+          "default": true
+        },
+        {
+          "value": "medium",
+          "label": "Medium Effort",
+          "description": "Balanced effort with standard implementation and testing"
+        },
+        {
+          "value": "low",
+          "label": "Low Effort",
+          "description": "Quick, fast implementations"
+        }
+      ]
+    },
+    {
+      "id": "grok-4.5",
+      "model": "grok-4.5",
+      "model_family": "xai",
+      "name": "Grok 4.5",
+      "provider": "xAI",
+      "description": "xAI's capable general-purpose model",
+      "base_url": "https://api.x.ai/v1",
+      "context_window": 500000,
+      "api_backend": "responses",
+      "supports_backend_search": false,
+      "system_prompt_label": "Grok 4.5",
+      "supports_reasoning_effort": true,
+      "reasoning_effort": "high",
+      "auto_compact_threshold_percent": 80,
+      "compaction_at_tokens": true,
+      "compactions_remaining": 1,
+      "reasoning_efforts": [
+        {
+          "value": "high",
+          "label": "High Effort",
+          "description": "Highest implementation quality with extensive reasoning",
+          "default": true
+        },
+        {
+          "value": "medium",
+          "label": "Medium Effort",
+          "description": "Balanced effort with standard implementation and testing"
+        },
+        {
+          "value": "low",
+          "label": "Low Effort",
+          "description": "Quick, fast implementations"
+        }
+      ]
+    },
+    {
+      "id": "claude-3-7-sonnet-20250219",
+      "model": "claude-3-7-sonnet-20250219",
+      "model_family": "anthropic",
+      "name": "Claude 3.7 Sonnet",
+      "provider": "Anthropic",
+      "description": "Anthropic's hybrid reasoning model with extended thinking",
+      "base_url": "https://api.anthropic.com/v1",
+      "context_window": 200000,
+      "api_backend": "responses",
+      "supports_backend_search": false,
+      "system_prompt_label": "Claude 3.7 Sonnet",
+      "supports_reasoning_effort": true,
+      "reasoning_effort": "high",
+      "auto_compact_threshold_percent": 80,
+      "compaction_at_tokens": true,
+      "compactions_remaining": 1,
+      "reasoning_efforts": [
+        {
+          "value": "high",
+          "label": "High Effort",
+          "description": "Extended thinking for complex reasoning",
+          "default": true
+        },
+        {
+          "value": "medium",
+          "label": "Medium Effort",
+          "description": "Balanced reasoning and speed"
+        },
+        {
+          "value": "low",
+          "label": "Low Effort",
+          "description": "Fast, lightweight responses"
+        }
+      ]
+    },
+    {
+      "id": "claude-3-5-sonnet-20241022",
+      "model": "claude-3-5-sonnet-20241022",
+      "model_family": "anthropic",
+      "name": "Claude 3.5 Sonnet",
+      "provider": "Anthropic",
+      "description": "Anthropic's strong general-purpose coding model",
+      "base_url": "https://api.anthropic.com/v1",
+      "context_window": 200000,
+      "api_backend": "responses",
+      "supports_backend_search": false,
+      "system_prompt_label": "Claude 3.5 Sonnet",
+      "supports_reasoning_effort": true,
+      "reasoning_effort": "medium",
+      "auto_compact_threshold_percent": 80,
+      "compaction_at_tokens": true,
+      "compactions_remaining": 1,
+      "reasoning_efforts": [
+        {
+          "value": "high",
+          "label": "High Effort",
+          "description": "Extended thinking for complex reasoning"
+        },
+        {
+          "value": "medium",
+          "label": "Medium Effort",
+          "description": "Balanced reasoning and speed",
+          "default": true
+        },
+        {
+          "value": "low",
+          "label": "Low Effort",
+          "description": "Fast, lightweight responses"
+        }
+      ]
+    },
+    {
+      "id": "gpt-4.5",
+      "model": "gpt-4.5",
+      "model_family": "openai",
+      "name": "GPT-4.5",
+      "provider": "OpenAI",
+      "description": "OpenAI's largest general-purpose model",
+      "base_url": "https://api.openai.com/v1",
+      "context_window": 128000,
+      "api_backend": "responses",
+      "supports_backend_search": true,
+      "system_prompt_label": "GPT-4.5",
+      "supports_reasoning_effort": false,
+      "reasoning_effort": "medium",
+      "auto_compact_threshold_percent": 80,
+      "compaction_at_tokens": true,
+      "compactions_remaining": 1,
+      "reasoning_efforts": [
+        {
+          "value": "medium",
+          "label": "Medium Effort",
+          "description": "Balanced reasoning and speed",
+          "default": true
+        },
+        {
+          "value": "low",
+          "label": "Low Effort",
+          "description": "Fast, lightweight responses"
+        }
+      ]
+    },
+    {
+      "id": "gpt-4o",
+      "model": "gpt-4o",
+      "model_family": "openai",
+      "name": "GPT-4o",
+      "provider": "OpenAI",
+      "description": "OpenAI's fast multimodal model",
+      "base_url": "https://api.openai.com/v1",
+      "context_window": 128000,
+      "api_backend": "responses",
+      "supports_backend_search": true,
+      "system_prompt_label": "GPT-4o",
+      "supports_reasoning_effort": false,
+      "reasoning_effort": "medium",
+      "auto_compact_threshold_percent": 80,
+      "compaction_at_tokens": true,
+      "compactions_remaining": 1,
+      "reasoning_efforts": [
+        {
+          "value": "medium",
+          "label": "Medium Effort",
+          "description": "Balanced reasoning and speed",
+          "default": true
+        },
+        {
+          "value": "low",
+          "label": "Low Effort",
+          "description": "Fast, lightweight responses"
+        }
+      ]
+    },
+    {
+      "id": "o3",
+      "model": "o3",
+      "model_family": "openai",
+      "name": "OpenAI o3",
+      "provider": "OpenAI",
+      "description": "OpenAI's advanced reasoning model",
+      "base_url": "https://api.openai.com/v1",
+      "context_window": 200000,
+      "api_backend": "responses",
+      "supports_backend_search": false,
+      "system_prompt_label": "o3",
+      "supports_reasoning_effort": true,
+      "reasoning_effort": "high",
+      "auto_compact_threshold_percent": 80,
+      "compaction_at_tokens": true,
+      "compactions_remaining": 1,
+      "reasoning_efforts": [
+        {
+          "value": "high",
+          "label": "High Effort",
+          "description": "Highest reasoning effort",
+          "default": true
+        },
+        {
+          "value": "medium",
+          "label": "Medium Effort",
+          "description": "Balanced reasoning"
+        },
+        {
+          "value": "low",
+          "label": "Low Effort",
+          "description": "Fast reasoning"
+        }
+      ]
+    },
+    {
+      "id": "o4-mini",
+      "model": "o4-mini",
+      "model_family": "openai",
+      "name": "OpenAI o4-mini",
+      "provider": "OpenAI",
+      "description": "OpenAI's small, efficient reasoning model",
+      "base_url": "https://api.openai.com/v1",
+      "context_window": 200000,
+      "api_backend": "responses",
+      "supports_backend_search": false,
+      "system_prompt_label": "o4-mini",
+      "supports_reasoning_effort": true,
+      "reasoning_effort": "medium",
+      "auto_compact_threshold_percent": 80,
+      "compaction_at_tokens": true,
+      "compactions_remaining": 1,
+      "reasoning_efforts": [
+        {
+          "value": "high",
+          "label": "High Effort",
+          "description": "Higher reasoning quality"
+        },
+        {
+          "value": "medium",
+          "label": "Medium Effort",
+          "description": "Balanced reasoning",
+          "default": true
+        },
+        {
+          "value": "low",
+          "label": "Low Effort",
+          "description": "Fast, efficient reasoning"
+        }
+      ]
+    },
+    {
+      "id": "gemini-2-5-pro",
+      "model": "gemini-2-5-pro",
+      "model_family": "google",
+      "name": "Gemini 2.5 Pro",
+      "provider": "Google",
+      "description": "Google's advanced reasoning model with a massive context window",
+      "base_url": "https://generativelanguage.googleapis.com/v1",
+      "context_window": 1000000,
+      "api_backend": "responses",
+      "supports_backend_search": true,
+      "system_prompt_label": "Gemini 2.5 Pro",
+      "supports_reasoning_effort": true,
+      "reasoning_effort": "high",
+      "auto_compact_threshold_percent": 80,
+      "compaction_at_tokens": true,
+      "compactions_remaining": 1,
+      "reasoning_efforts": [
+        {
+          "value": "high",
+          "label": "High Effort",
+          "description": "Deep reasoning for complex tasks",
+          "default": true
+        },
+        {
+          "value": "medium",
+          "label": "Medium Effort",
+          "description": "Balanced reasoning"
+        },
+        {
+          "value": "low",
+          "label": "Low Effort",
+          "description": "Fast responses"
+        }
+      ]
+    },
+    {
+      "id": "deepseek-v3",
+      "model": "deepseek-v3",
+      "model_family": "deepseek",
+      "name": "DeepSeek V3",
+      "provider": "DeepSeek",
+      "description": "DeepSeek's Mixture-of-Experts general-purpose model",
+      "base_url": "https://api.deepseek.com/v1",
+      "context_window": 128000,
+      "api_backend": "responses",
+      "supports_backend_search": false,
+      "system_prompt_label": "DeepSeek V3",
+      "supports_reasoning_effort": false,
+      "reasoning_effort": "medium",
+      "auto_compact_threshold_percent": 80,
+      "compaction_at_tokens": true,
+      "compactions_remaining": 1,
+      "reasoning_efforts": [
+        {
+          "value": "medium",
+          "label": "Medium Effort",
+          "description": "Balanced reasoning and speed",
+          "default": true
+        },
+        {
+          "value": "low",
+          "label": "Low Effort",
+          "description": "Fast, lightweight responses"
+        }
+      ]
+    },
+    {
+      "id": "deepseek-r1",
+      "model": "deepseek-r1",
+      "model_family": "deepseek",
+      "name": "DeepSeek R1",
+      "provider": "DeepSeek",
+      "description": "DeepSeek's open-weights reasoning model",
+      "base_url": "https://api.deepseek.com/v1",
+      "context_window": 128000,
+      "api_backend": "responses",
+      "supports_backend_search": false,
+      "system_prompt_label": "DeepSeek R1",
+      "supports_reasoning_effort": true,
+      "reasoning_effort": "high",
+      "auto_compact_threshold_percent": 80,
+      "compaction_at_tokens": true,
+      "compactions_remaining": 1,
+      "reasoning_efforts": [
+        {
+          "value": "high",
+          "label": "High Effort",
+          "description": "Deep chain-of-thought reasoning",
+          "default": true
+        },
+        {
+          "value": "medium",
+          "label": "Medium Effort",
+          "description": "Balanced reasoning"
+        },
+        {
+          "value": "low",
+          "label": "Low Effort",
+          "description": "Fast reasoning"
+        }
+      ]
+    }
+  ]
+}
